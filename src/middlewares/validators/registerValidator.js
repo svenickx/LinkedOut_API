@@ -12,6 +12,9 @@ const registerSchema = Joi.object({
   city: Joi.string().min(3).max(100).required(),
   zipCode: Joi.number(),
   phoneNumber: Joi.string().min(4).max(100).required(),
+  dailyPrice: Joi.number(),
+  yearlyExperience: Joi.number(),
+  skills: Joi.array(),
 });
 
 module.exports = registerSchema;

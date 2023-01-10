@@ -1,27 +1,53 @@
 const User = require("../models/user_model");
+const Freelance = require("../models/freelance_model");
+const Skill = require("../models/skill_model");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var jwt = require("jsonwebtoken");
+const { message } = require("../middlewares/validators/registerValidator");
 
-exports.register = (req, res) => {
-  const { firstname, lastname, email, address, city, zipCode, phoneNumber } =
-    req.body;
-  const hash = bcrypt.hashSync(req.body.password, saltRounds);
+exports.freelanceRegister = async (req, res) => {
+  const {
+    firstname,
+    lastname,
+    email,
+    address,
+    city,
+    zipCode,
+    phoneNumber,
+    dailyPrice,
+    yearlyExperience,
+    skills,
+  } = req.body;
+
+  const dbSkills = await Skill.find({ name: { $in: skills } });
+  const skillIDs = dbSkills.map((s) => s.id);
 
   const newUser = new User({
     firstname,
     lastname,
     email,
-    password: hash,
+    password: bcrypt.hashSync(req.body.password, saltRounds),
     address,
     city,
     zipCode,
     phoneNumber,
   });
 
+  const newFreelance = new Freelance({
+    dailyPrice,
+    yearlyExperience,
+    skills: skillIDs,
+  });
+
   newUser
     .save()
-    .then((data) => res.send(data))
+    .then((data) => {
+      newFreelance.user = data._id;
+      newFreelance
+        .save()
+        .then(res.status(200).send({ message: { newUser, newFreelance } }));
+    })
     .catch((err) => res.status(400).send(err));
 };
 

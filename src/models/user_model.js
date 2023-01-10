@@ -50,6 +50,10 @@ const userSchema = mongoose.Schema({
     minLength: 4,
     maxLength: 15,
   },
+  company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Company",
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
