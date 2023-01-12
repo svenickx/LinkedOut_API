@@ -9,9 +9,6 @@ const verifyRegister = (req, res, next) => {
     });
   }
 
-  // return res.status(200).send({
-  //   message: "Validation passée avec succès",
-  // });
   next();
 };
 

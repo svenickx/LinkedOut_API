@@ -15,6 +15,7 @@ const registerSchema = Joi.object({
   dailyPrice: Joi.number(),
   yearlyExperience: Joi.number(),
   skills: Joi.array(),
+  jobs: Joi.array(),
 });
 
 module.exports = registerSchema;
