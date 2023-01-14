@@ -3,6 +3,7 @@ const User = require("../models/user_model");
 const Skill = require("../models/skill_model");
 const Job = require("../models/job_model");
 const bcrypt = require("bcrypt");
+const ResetPasswordMail = require("../config/mail/templates/resetPassword");
 const saltRounds = 10;
 
 // Retourne les Freelances selon les paramètres par défaut ou passé dans la requêtes
@@ -140,12 +141,23 @@ exports.changePassword = async (req, res) => {
 // Change le mot de passe de l'utilisateur dont le mail est passé en body
 exports.resetPassword = async (req, res) => {
   try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      res
+        .status(404)
+        .send({ message: "Aucun utilisateur trouvé avec cet adresse email" });
+    }
+
     let p = (Math.random() + 1).toString(36).substring(2);
     const password = bcrypt.hashSync(p, saltRounds);
 
-    await User.updateOne({ email: req.body.email }, { password });
+    await User.findByIdAndUpdate(user._id, { password });
 
-    res.status(200).send({ newPassword: p });
+    ResetPasswordMail(user.email, p);
+    res.status(200).send({
+      message:
+        "Le mot de passe a été reinitialisé, veuillez consulter votre boite mail",
+    });
   } catch (err) {
     res.status(400).send(err);
   }

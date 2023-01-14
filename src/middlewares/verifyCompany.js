@@ -9,6 +9,7 @@ const verifyCompany = async (req, res, next) => {
     });
   }
 
+  req.companyID = user.company;
   next();
 };
 

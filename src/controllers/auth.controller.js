@@ -6,6 +6,7 @@ const Job = require("../models/job_model");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var jwt = require("jsonwebtoken");
+const SendRegisterMail = require("../config/mail/templates/register");
 
 // Inscription d'un utilisateur en Freelance
 exports.freelanceRegister = async (req, res) => {
@@ -28,8 +29,11 @@ exports.freelanceRegister = async (req, res) => {
       newFreelance.user = data._id;
       newFreelance
         .save()
-        .then(res.status(200).send({ message: { newUser, newFreelance } }))
-        .catch(res.status(400).send());
+        .then(() => {
+          SendRegisterMail(newUser.email, newUser.firstname, true);
+          res.status(200).send({ message: { newUser, newFreelance } });
+        })
+        .catch((err) => res.status(400).send(err));
     })
     .catch((err) => res.status(400).send(err));
 };
@@ -39,7 +43,7 @@ exports.recruiterRegister = async (req, res) => {
   const company = await Company.findOne({ name: req.body.companyName });
   if (!company) {
     return res.status(404).send({
-      message: `${companyName} not found, please create company first`,
+      message: `${companyName} introuvable, veuillez créer l'entreprise`,
     });
   }
 
@@ -49,7 +53,10 @@ exports.recruiterRegister = async (req, res) => {
 
   newUser
     .save()
-    .then((data) => res.status(200).send(data))
+    .then((data) => {
+      SendRegisterMail(newUser.email, newUser.firstname, false);
+      res.status(200).send(data);
+    })
     .catch((err) => res.status(400).send(err));
 };
 

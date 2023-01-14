@@ -6,11 +6,12 @@ const Skill = require("../models/skill_model");
 exports.createMission = async (req, res) => {
   const dbJob = await Job.findOne({ name: req.body.job });
   const dbSkills = await Skill.find({ name: { $in: req.body.skills } });
-  const skillIDs = dbSkills.map((s) => s.id);
 
   const newMission = new Mission(req.body);
   newMission.job = dbJob._id;
-  newMission.skills = skillIDs;
+  newMission.skills = dbSkills.map((s) => s.id);
+  newMission.company = req.companyID;
+  newMission.status = "En attente";
 
   newMission
     .save()

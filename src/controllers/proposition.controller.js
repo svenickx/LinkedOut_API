@@ -3,30 +3,37 @@ const User = require("../models/user_model");
 const Company = require("../models/company_model");
 const Mission = require("../models/mission_model");
 const { findById } = require("../models/mission_model");
+const CreatePropositionMail = require("../config/mail/templates/createProposition");
+const HandlePropositionMail = require("../config/mail/templates/handleProposition");
 
 // Créé une nouvelle proposition à destination d'un utilisateur Freelance
 exports.createProposition = async (req, res) => {
-  const { company, user, mission } = req.body;
+  const { user, mission } = req.body;
 
   const dbUser = await User.findById(user);
   if (dbUser.company) {
     return res.status(401).send({
       message:
-        "This user cannot be the target of a proposition because he his not a freelancer",
+        "Cet utilisateur ne peut pas être la cible d'une proposition car ce n'est pas un freelancer",
     });
   }
 
-  const dbCompany = await Company.findById(company);
-  const dbMission = await Mission.findById(mission);
+  const currentMission = await Mission.findById(mission).populate("company");
+  if (currentMission.status == "Confirmed") {
+    return res.status(400).send({
+      message:
+        "Cette mission a déjà été accepté par un Freelance. Il n'est plus possible de la proposer à d'autres Freelance",
+    });
+  }
 
   const currentPropositions = await Proposition.find({
-    mission: dbMission,
+    mission: currentMission,
   });
 
   if (currentPropositions.length >= 3) {
     return res.status(401).send({
       message:
-        "Already 3 propositions existing, please delete a proposition or wait for freelancers' response",
+        "Cette mission possède déjà 3 propositions à des Freelances, veuillez supprimer l'une des propositions ou attendre la réponse d'un des Freelances",
     });
   }
 
@@ -36,33 +43,48 @@ exports.createProposition = async (req, res) => {
 
   if (currentUserProposition.length > 0) {
     return res.status(401).send({
-      message: "This user has already a proposition for this mission",
+      message: "Cet utilisateur a déjà une proposition pour cette mission",
     });
   }
 
   const newProposition = new Proposition({
-    company: dbCompany._id,
+    company: currentMission.company,
     user: dbUser._id,
-    mission: dbMission._id,
+    mission: currentMission._id,
     status: "En attente",
   });
 
   newProposition
     .save()
-    .then((data) => res.status(200).send(data))
+    .then((data) => {
+      CreatePropositionMail(dbUser.email, currentMission);
+      res.status(200).send(data);
+    })
     .catch((err) => res.status(400).send(err));
 };
 
-// Acceptation ou refus de la proposition faite à un Freelance par une entreprise
+// Acceptation ou refus de la proposition par le Freelance
 exports.handleProposition = async (req, res) => {
   const { mission, accepted } = req.body;
+
+  const currentUser = await User.findById(req.userToken.userID);
+  const currentMission = await Mission.findById(mission).populate("company");
+  const companyRecruiter = await User.findOne({ company: mission.company });
 
   if (!accepted) {
     return Proposition.deleteOne({
       user: req.userToken.userID,
       mission,
     })
-      .then((data) => res.status(200).send(data))
+      .then((data) => {
+        HandlePropositionMail(
+          companyRecruiter.email,
+          currentUser.firstname,
+          currentMission.title,
+          false
+        );
+        res.status(200).send(data);
+      })
       .catch((err) => res.status(400).send(err));
   }
 
@@ -70,22 +92,37 @@ exports.handleProposition = async (req, res) => {
     mission,
   });
 
-  const isAlreadyAccepted = currentPropositions.some(
-    (p) => p.status == "Accepted"
-  );
-  if (isAlreadyAccepted) {
-    return res
-      .status(401)
-      .send({ message: "The proposition has already been accepted" });
+  if (!currentPropositions.some((p) => p.user._id == req.userToken.userID)) {
+    return res.status(404).send({
+      message:
+        "Vous ne pouvez pas accepter une mission qui ne vous pas été proposé",
+    });
   }
 
-  const proposition = currentPropositions.map((p) => {
+  if (currentPropositions.some((p) => p.status == "Accepted")) {
+    return res.status(400).send({
+      message:
+        "Cette proposition n'est plus disponible car elle a déjà été accepté par un Freelance",
+    });
+  }
+
+  const proposition = currentPropositions.map(async (p) => {
     p.status = p.user == req.userToken.userID ? "Accepted" : "Rejected";
-    Proposition.findByIdAndUpdate(p._id, p);
+    await Proposition.findByIdAndUpdate(p._id, p);
     if (p.user == req.userToken.userID) {
       return p;
     }
   });
+
+  currentMission.status = "Confirmed";
+  await Mission.findByIdAndUpdate(currentMission._id, currentMission);
+
+  HandlePropositionMail(
+    companyRecruiter.email,
+    currentUser.firstname,
+    currentMission.title,
+    true
+  );
 
   return res.status(200).send(proposition);
 };

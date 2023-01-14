@@ -25,6 +25,10 @@ const missionSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Company",
+  },
   job: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Job",

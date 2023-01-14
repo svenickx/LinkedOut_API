@@ -5,13 +5,13 @@ const userRouter = require("./user.route");
 const jobRouter = require("./job.route");
 const missionRouter = require("./mission.route");
 const propositionRouter = require("./proposition.route");
-const skillRouter = require("./skill.route");
+const adminRouter = require("./admin.route");
 
 router.use("/auth", authRouter);
 router.use("/user", userRouter);
 router.use("/job", jobRouter);
 router.use("/mission", missionRouter);
 router.use("/proposition", propositionRouter);
-router.use("/skill", skillRouter);
+router.use("/admin", adminRouter);
 
 module.exports = router;
