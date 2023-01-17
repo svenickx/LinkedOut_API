@@ -40,10 +40,12 @@ exports.freelanceRegister = async (req, res) => {
 
 // Inscription d'un utilisateur lié à une entreprise
 exports.recruiterRegister = async (req, res) => {
-  const company = await Company.findOne({ name: req.body.companyName });
+  const company = await Company.findOne({
+    name: new RegExp(`^${req.body.companyName}`, "i"),
+  });
   if (!company) {
     return res.status(404).send({
-      message: `${companyName} introuvable, veuillez créer l'entreprise`,
+      message: `${req.body.companyName} introuvable, veuillez créer l'entreprise`,
     });
   }
 

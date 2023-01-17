@@ -1,55 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/admin.controller");
-const verifyRegister = require("../middlewares/verifyRegister");
-const verifyLogin = require("../middlewares/verifyLogin");
-const verifyToken = require("../middlewares/verifyToken");
-const verifyAdmin = require("../middlewares/verifyAdmin");
+const hasToken = require("../middlewares/hasToken");
+const isAdmin = require("../middlewares/isAdmin");
 
-router.delete(
-  "/deleteUser",
-  verifyToken,
-  verifyAdmin,
-  adminController.deleteUser
-);
+// User
+router.delete("/deleteUser", hasToken, isAdmin, adminController.deleteUser);
+router.put("/updateUser", hasToken, isAdmin, adminController.updateUser);
+router.get("/getUsers", hasToken, isAdmin, adminController.getUsers);
 
-router.put("/updateUser", verifyToken, verifyAdmin, adminController.updateUser);
-router.get("/getUsers", verifyToken, verifyAdmin, adminController.getUsers);
+// Skill
+router.post("/createSkill", hasToken, isAdmin, adminController.createSkill);
+router.put("/updateSkill", hasToken, isAdmin, adminController.updateSkill);
+router.delete("/deleteSkill", hasToken, isAdmin, adminController.deleteSkill);
+router.get("/getSkills", hasToken, isAdmin, adminController.getSkills);
 
-router.post(
-  "/createSkill",
-  verifyToken,
-  verifyAdmin,
-  adminController.createSkill
-);
-router.put(
-  "/updateSkill",
-  verifyToken,
-  verifyAdmin,
-  adminController.updateSkill
-);
-router.delete(
-  "/deleteSkill",
-  verifyToken,
-  verifyAdmin,
-  adminController.deleteSkill
-);
-router.get("/getSkills", verifyToken, verifyAdmin, adminController.getSkills);
-
-router.post("/createJob", verifyToken, verifyAdmin, adminController.createJob);
-router.put("/updateJob", verifyToken, verifyAdmin, adminController.updateJob);
-router.delete(
-  "/deleteJob",
-  verifyToken,
-  verifyAdmin,
-  adminController.deleteJob
-);
-router.get("/getJobs", verifyToken, verifyAdmin, adminController.getJobs);
+// Job
+router.post("/createJob", hasToken, isAdmin, adminController.createJob);
+router.put("/updateJob", hasToken, isAdmin, adminController.updateJob);
+router.delete("/deleteJob", hasToken, isAdmin, adminController.deleteJob);
+router.get("/getJobs", hasToken, isAdmin, adminController.getJobs);
 
 router.get(
   "/getFreelanceMissions",
-  verifyToken,
-  verifyAdmin,
+  hasToken,
+  isAdmin,
   adminController.getFreelanceMissions
 );
 

@@ -16,15 +16,16 @@ exports.getFreelances = async (req, res) => {
 
   const allFreelances = await Freelance.find({
     $and: [
-      { dailyPrice: { $gt: minPrice ?? 0 } },
-      { dailyPrice: { $lt: maxPrice ?? 9999 } },
+      { dailyPrice: { $gte: minPrice ?? 0 } },
+      { dailyPrice: { $lte: maxPrice ?? 9999 } },
       { skills: { $in: skillIDs } },
       { yearlyExperience: { $gt: minExp ?? 0 } },
       { yearlyExperience: { $lt: maxExp ?? 50 } },
     ],
   })
     .populate("user")
-    .populate("skills");
+    .populate("skills")
+    .populate("jobs");
 
   res.status(200).send(allFreelances);
 };
@@ -32,41 +33,57 @@ exports.getFreelances = async (req, res) => {
 // Retourne les Freelances qui match la recherche passé en paramètre
 exports.search = async (req, res) => {
   const { s } = req.query;
-
   const keyWords = s.split(" ");
-  const dbSkills = await Skill.find({ name: { $in: keyWords } });
-  const skillIDs = dbSkills.map((s) => s.id);
 
   try {
-    let freelances = null;
+    const dbSkills = await Skill.find({ name: { $in: keyWords } });
+    const dbJobs = await Job.find({ name: { $in: keyWords } });
 
-    if (skillIDs.length > 0) {
-      freelances = await Freelance.find({
-        skills: { $in: skillIDs },
-      })
-        .populate("user")
-        .populate("skills")
-        .populate("jobs");
-    } else {
-      freelances = await Freelance.find()
-        .populate("user")
-        .populate("skills")
-        .populate("jobs");
-    }
+    let searchOption =
+      dbSkills.length > 0 ? { skills: { $in: dbSkills.map((s) => s.id) } } : {};
 
-    const freelancesFiltered = freelances.filter((fr) => {
+    searchOption =
+      dbJobs.length > 0
+        ? { ...searchOption, jobs: { $in: dbJobs.map((j) => j.id) } }
+        : { ...searchOption };
+
+    let freelances = await Freelance.find({ $or: [{ ...searchOption }] })
+      .populate("jobs")
+      .populate("skills")
+      .populate("user");
+
+    // Au cas où certains freelances n'auraient plus d'utilisateur affilié
+    freelances = freelances.filter((fr) => fr.user);
+
+    // calcul un score en fonction des paramètres recherchés
+    freelances.forEach((fr) => {
+      fr.searchScore = 0;
+      if (keyWords.includes(fr.user.city)) {
+        fr.searchScore++;
+      }
+      if (keyWords.includes(fr.user.zipCode)) {
+        fr.searchScore++;
+      }
       if (
-        keyWords.includes(fr.user.city) ||
-        keyWords.includes(fr.user.zipCode.toString()) ||
         keyWords.includes(fr.user.firstname) ||
-        keyWords.includes(fr.user.lastname) ||
-        keyWords.includes(fr.job.name)
+        keyWords.includes(fr.user.lastname)
       ) {
-        return fr;
+        fr.searchScore++;
       }
     });
 
-    res.status(200).send(freelancesFiltered);
+    // trie en fonction de la pertinence de la recherche et des résultats trouvés
+    freelances.sort((a, b) => b.searchScore - a.searchScore);
+
+    if (
+      dbSkills.map((s) => s.id).length == 0 &&
+      dbJobs.map((s) => s.id).length == 0
+    ) {
+      // filtre ceux qui n'ont pas eu de similitude avec la recherche
+      freelances = freelances.filter((fr) => fr.searchScore > 0);
+    }
+
+    res.status(200).send(freelances);
   } catch (err) {
     res.status(400).send(err);
   }

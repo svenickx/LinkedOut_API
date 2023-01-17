@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const missionController = require("../controllers/mission.controller");
-const verifyCompany = require("../middlewares/verifyCompany");
-const verifyToken = require("../middlewares/verifyToken");
+const isCompany = require("../middlewares/isCompany");
+const hasToken = require("../middlewares/hasToken");
 
 router.post(
   "/createMission",
-  verifyToken,
-  verifyCompany,
+  hasToken,
+  isCompany,
   missionController.createMission
 );
 router.put(
   "/updateMission",
-  verifyToken,
-  verifyCompany,
+  hasToken,
+  isCompany,
   missionController.updateMission
 );
 

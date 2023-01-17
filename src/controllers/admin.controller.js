@@ -2,7 +2,6 @@ const User = require("../models/user_model");
 const Skill = require("../models/skill_model");
 const Job = require("../models/job_model");
 const Proposition = require("../models/proposition_model");
-const Mission = require("../models/mission_model");
 
 exports.deleteUser = async (req, res) => {
   User.findByIdAndDelete(req.body.user)
@@ -22,7 +21,7 @@ exports.updateUser = async (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 exports.getUsers = async (req, res) => {
-  const limit = 3;
+  const limit = 10;
   const skip = req.query.page * limit;
   User.find({}, {}, { skip, limit })
     .then((data) => {

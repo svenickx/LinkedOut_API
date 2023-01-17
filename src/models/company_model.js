@@ -12,6 +12,7 @@ const companySchema = mongoose.Schema({
   },
   siret: {
     type: String,
+    unique: true,
     required: true,
   },
   address: {

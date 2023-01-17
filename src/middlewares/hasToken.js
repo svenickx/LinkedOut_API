@@ -1,9 +1,11 @@
 const jwt = require("jsonwebtoken");
 
-const verifyToken = (req, res, next) => {
+const hasToken = (req, res, next) => {
   let token = req.headers.authorization;
   if (!token) {
-    return res.status(403).send("Who are you??");
+    return res
+      .status(403)
+      .send("Aucun jeton de connexion trouvé, veuillez vous connecter");
   }
   token = token.replace("Bearer ", "");
 
@@ -12,7 +14,7 @@ const verifyToken = (req, res, next) => {
       return res.status(401).send({
         auth: false,
         token: null,
-        message: "not authorized",
+        message: "Jeton invalide",
       });
     }
 
@@ -20,4 +22,4 @@ const verifyToken = (req, res, next) => {
     next();
   });
 };
-module.exports = verifyToken;
+module.exports = hasToken;

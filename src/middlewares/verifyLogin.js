@@ -5,7 +5,8 @@ const verifyLogin = (req, res, next) => {
 
   if (error) {
     return res.status(400).send({
-      message: "Informations incorrect",
+      message:
+        "Les informations saisies pour la connexion ne sont pas conformes",
     });
   }
 

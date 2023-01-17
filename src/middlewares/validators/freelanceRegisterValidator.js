@@ -1,8 +1,16 @@
 const Joi = require("joi");
 
-const registerSchema = Joi.object({
-  firstname: Joi.string().alphanum().min(3).max(30).required(),
-  lastname: Joi.string().alphanum().min(3).max(30).required(),
+const freelanceRegisterSchema = Joi.object({
+  firstname: Joi.string()
+    .pattern(new RegExp("[A-zÀ-ú]"))
+    .min(3)
+    .max(30)
+    .required(),
+  lastname: Joi.string()
+    .pattern(new RegExp("[A-zÀ-ú]"))
+    .min(3)
+    .max(30)
+    .required(),
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
   email: Joi.string().email({
     minDomainSegments: 2,
@@ -18,4 +26,4 @@ const registerSchema = Joi.object({
   jobs: Joi.array(),
 });
 
-module.exports = registerSchema;
+module.exports = freelanceRegisterSchema;

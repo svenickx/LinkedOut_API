@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const propositionController = require("../controllers/proposition.controller");
-const verifyCompany = require("../middlewares/verifyCompany");
-const verifyFreelance = require("../middlewares/verifyFreelance");
-const verifyToken = require("../middlewares/verifyToken");
+const isCompany = require("../middlewares/isCompany");
+const isFreelance = require("../middlewares/isFreelance");
+const hasToken = require("../middlewares/hasToken");
 
 router.post(
   "/createProposition",
-  verifyToken,
-  verifyCompany,
+  hasToken,
+  isCompany,
   propositionController.createProposition
 );
 router.post(
   "/handleProposition",
-  verifyToken,
-  verifyFreelance,
+  hasToken,
+  isFreelance,
   propositionController.handleProposition
 );
 
