@@ -1,8 +1,6 @@
 const Proposition = require("../models/proposition_model");
 const User = require("../models/user_model");
-const Company = require("../models/company_model");
 const Mission = require("../models/mission_model");
-const { findById } = require("../models/mission_model");
 const CreatePropositionMail = require("../config/mail/templates/createProposition");
 const HandlePropositionMail = require("../config/mail/templates/handleProposition");
 
@@ -33,25 +31,27 @@ exports.createProposition = async (req, res) => {
     });
   }
 
-  const currentPropositions = await Proposition.find({
+  let currentPropositions = await Proposition.find({
     mission: currentMission,
-    status: "En attente",
+    $or: [{ status: "En attente" }, { status: "Refusé" }],
   });
+
+  const isAlreadyProposed = currentPropositions.some((p) => p.user._id == user);
+  if (isAlreadyProposed) {
+    res.status(401).send({
+      message:
+        "Le Freelance a déjà une proposition lié à cette mission (En attente ou refusé)",
+    });
+  }
+
+  currentPropositions = currentPropositions.filter(
+    (p) => p.status == "En attente"
+  );
 
   if (currentPropositions.length >= 3) {
     return res.status(401).send({
       message:
         "Cette mission possède déjà 3 propositions en attente à des Freelances, veuillez supprimer l'une des propositions ou attendre la réponse d'un des Freelances",
-    });
-  }
-
-  const currentUserProposition = currentPropositions.filter(
-    (p) => p.user.toString() == user && p.mission.toString() == mission
-  );
-
-  if (currentUserProposition.length > 0) {
-    return res.status(401).send({
-      message: "Cet utilisateur a déjà une proposition pour cette mission",
     });
   }
 
@@ -81,14 +81,25 @@ exports.handleProposition = async (req, res) => {
   const companyRecruiter = await User.findOne({ company: mission.company });
 
   if (!accepted) {
-    return Proposition.updateOne(
+    return Proposition.findOneAndUpdate(
       {
         user: req.userToken.userID,
         mission,
+        status: "En attente",
       },
-      { status: "Refusé" }
+      { status: "Refusé" },
+      { new: true }
     )
+      .populate("company")
+      .populate("user")
+      .populate("mission")
       .then((data) => {
+        if (!data) {
+          return res.status(404).send({
+            message: "La proprosition n'existe pas ou n'est plus disponible",
+          });
+        }
+
         HandlePropositionMail(
           companyRecruiter.email,
           currentUser.firstname,
@@ -105,15 +116,25 @@ exports.handleProposition = async (req, res) => {
   });
 
   if (currentPropositions.length <= 0) {
-    return res
-      .status(404)
-      .send({ message: "Aucune proposition n'a été trouvé" });
+    return res.status(404).send({
+      message: "La proprosition n'existe pas ou n'est plus disponible",
+    });
   }
 
   if (!currentPropositions.some((p) => p.user._id == req.userToken.userID)) {
     return res.status(404).send({
       message:
         "Vous ne pouvez pas accepter une mission qui ne vous pas été proposé",
+    });
+  }
+
+  if (
+    currentPropositions.some(
+      (p) => p.status != "En attente" && p.user._id == req.userToken.userID
+    )
+  ) {
+    return res.status(400).send({
+      message: "Vous avez déjà répondu à cette proposition",
     });
   }
 

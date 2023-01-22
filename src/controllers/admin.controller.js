@@ -2,6 +2,9 @@ const User = require("../models/user_model");
 const Skill = require("../models/skill_model");
 const Job = require("../models/job_model");
 const Proposition = require("../models/proposition_model");
+const Company = require("../models/company_model");
+
+//#region Gestion des utilisateurs
 
 exports.deleteUser = async (req, res) => {
   User.findByIdAndDelete(req.body.user)
@@ -15,11 +18,13 @@ exports.deleteUser = async (req, res) => {
     })
     .catch((err) => res.status(400).send(err));
 };
+
 exports.updateUser = async (req, res) => {
   User.findByIdAndUpdate(req.body.user, req.body, { new: true })
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(400).send(err));
 };
+
 exports.getUsers = async (req, res) => {
   const limit = 10;
   const skip = req.query.page * limit;
@@ -35,7 +40,10 @@ exports.getUsers = async (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
-// Créé une nouvelle compétence
+//#endregion
+
+//#region Gestion des compétences
+
 exports.createSkill = async (req, res) => {
   const newSkill = new Skill(req.body);
 
@@ -44,7 +52,7 @@ exports.createSkill = async (req, res) => {
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(400).send(err));
 };
-// Modifie une compétence
+
 exports.updateSkill = async (req, res) => {
   Skill.findOneAndUpdate(
     { name: req.body.name },
@@ -61,7 +69,7 @@ exports.updateSkill = async (req, res) => {
     })
     .catch((err) => res.status(400).send(err));
 };
-// Supprime une compétence
+
 exports.deleteSkill = async (req, res) => {
   Skill.findOneAndDelete({ name: req.body.name })
     .then((data) => {
@@ -74,9 +82,9 @@ exports.deleteSkill = async (req, res) => {
     })
     .catch((err) => res.status(400).send(err));
 };
-// Récupère des compétences
+
 exports.getSkills = async (req, res) => {
-  const limit = 3;
+  const limit = 10;
   const skip = req.query.page * limit;
   Skill.find({}, {}, { skip, limit })
     .then((data) => {
@@ -90,7 +98,10 @@ exports.getSkills = async (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
-// Créé un nouveau métier
+//#endregion
+
+//#region Gestion des métiers
+
 exports.createJob = async (req, res) => {
   const newJob = new Job(req.body);
 
@@ -99,7 +110,7 @@ exports.createJob = async (req, res) => {
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(400).send(err));
 };
-// Modifie une métier
+
 exports.updateJob = async (req, res) => {
   Job.findOneAndUpdate(
     { name: req.body.name },
@@ -116,7 +127,7 @@ exports.updateJob = async (req, res) => {
     })
     .catch((err) => res.status(400).send(err));
 };
-// Supprime une métier
+
 exports.deleteJob = async (req, res) => {
   Job.findOneAndDelete({ name: req.body.name })
     .then((data) => {
@@ -129,7 +140,7 @@ exports.deleteJob = async (req, res) => {
     })
     .catch((err) => res.status(400).send(err));
 };
-// Récupère des métiers
+
 exports.getJobs = async (req, res) => {
   const limit = 3;
   const skip = req.query.page * limit;
@@ -145,6 +156,11 @@ exports.getJobs = async (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
+//#endregion
+
+//#region Autres
+
+// Récupère les missions du freelance passé en paramètre (via email ou id)
 exports.getFreelanceMissions = async (req, res) => {
   let user;
   if (req.query.userID) {
@@ -165,3 +181,12 @@ exports.getFreelanceMissions = async (req, res) => {
 
   res.status(200).send({ user, propositions });
 };
+
+// Récupère toutes les entreprises
+exports.getAllCompanies = async (req, res) => {
+  Company.find()
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(400).send(err));
+};
+
+//#endregion

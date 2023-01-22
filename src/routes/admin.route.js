@@ -21,12 +21,20 @@ router.put("/updateJob", hasToken, isAdmin, adminController.updateJob);
 router.delete("/deleteJob", hasToken, isAdmin, adminController.deleteJob);
 router.get("/getJobs", hasToken, isAdmin, adminController.getJobs);
 
-// retourne un freelance avec toutes ses missions
+// Retourne un freelance avec toutes ses missions
 router.get(
   "/getFreelanceMissions",
   hasToken,
   isAdmin,
   adminController.getFreelanceMissions
+);
+
+// Récupère toutes les entreprises
+router.get(
+  "/getAllCompanies",
+  hasToken,
+  isAdmin,
+  adminController.getAllCompanies
 );
 
 module.exports = router;
