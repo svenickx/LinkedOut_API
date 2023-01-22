@@ -17,5 +17,17 @@ router.post(
   isFreelance,
   propositionController.handleProposition
 );
+router.get(
+  "/getCurrentUserPropositions",
+  hasToken,
+  isFreelance,
+  propositionController.getCurrentUserPropositions
+);
+router.get(
+  "/getCurrentCompanyPropositions",
+  hasToken,
+  isCompany,
+  propositionController.getCurrentCompanyPropositions
+);
 
 module.exports = router;

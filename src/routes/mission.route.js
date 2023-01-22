@@ -16,5 +16,17 @@ router.put(
   isCompany,
   missionController.updateMission
 );
+router.delete(
+  "/deleteMission",
+  hasToken,
+  isCompany,
+  missionController.deleteMission
+);
+router.get(
+  "/getCurrentCompanyMissions",
+  hasToken,
+  isCompany,
+  missionController.getCurrentCompanyMissions
+);
 
 module.exports = router;

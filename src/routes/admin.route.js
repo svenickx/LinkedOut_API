@@ -21,6 +21,7 @@ router.put("/updateJob", hasToken, isAdmin, adminController.updateJob);
 router.delete("/deleteJob", hasToken, isAdmin, adminController.deleteJob);
 router.get("/getJobs", hasToken, isAdmin, adminController.getJobs);
 
+// retourne un freelance avec toutes ses missions
 router.get(
   "/getFreelanceMissions",
   hasToken,

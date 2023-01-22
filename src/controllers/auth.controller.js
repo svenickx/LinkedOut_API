@@ -31,7 +31,7 @@ exports.freelanceRegister = async (req, res) => {
         .save()
         .then(() => {
           SendRegisterMail(newUser.email, newUser.firstname, true);
-          res.status(200).send({ message: { newUser, newFreelance } });
+          res.status(200).send({ newUser, newFreelance });
         })
         .catch((err) => res.status(400).send(err));
     })

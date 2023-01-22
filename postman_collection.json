@@ -1,0 +1,2220 @@
+{
+	"info": {
+		"_postman_id": "a4fa7d3f-6296-437a-bf4e-7c07de4c5f48",
+		"name": "API_b3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23531882"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63c072f94748493151083e4e\",\r\n    \"isAdmin\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/updateUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63c6878458b6d34d693bfec7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/deleteUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"deleteUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/getUsers?page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"getUsers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSkill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"pandas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/createSkill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"createSkill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSkill",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"SQL\",\r\n    \"newName\":\"NoSQL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/updateSkill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"updateSkill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSkill",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NoSQL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/deleteSkill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"deleteSkill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSkills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/getSkills?page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"getSkills"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createJob",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Cloud Network Engineer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/createJob",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"createJob"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateJob",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"DevOps\",\r\n    \"newName\":\"DevOps\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/updateJob",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"updateJob"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteJob",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DevOps\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/deleteJob",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"deleteJob"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getJobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/getJobs?page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"getJobs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFreelanceMissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/admin/getFreelanceMissions?userID=63c072cbfb0463e5a9c07ee6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"getFreelanceMissions"
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "test4@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "userID",
+									"value": "63c072cbfb0463e5a9c07ee6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"thomas@freelance.com\",\r\n    \"password\": \"APIb3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "adminLogin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"sven.dockx@gmail.com\",\r\n    \"password\": \"APIb3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d1-byqtc8nZbpYsHVxwd6lroB02mQk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Jan 2023 21:02:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2M2I0MjBlNjM0YzJlOTE2YjYwNmE5MDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzM1NTczMjl9.CZrhfqxhofc2NltMsTKsYhfnh8b6BI8okWLS1LZng0M\",\n    \"message\": \"User Logged\"\n}"
+						},
+						{
+							"name": "recruiterLogin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"yohan@recruiter.com\",\r\n    \"password\": \"APIb3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "211"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d3-y6AiMWvIIHJ4AJDDoUs2rhGd1os\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 11:50:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2M2M0MWU0Mjk2NWE2Mzg2MjMwYjJmYzciLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjczOTU2MjA2fQ.a7yOVpLpmrmEe9on_a6rDHOj3Luc6Agort0K0qDnlCo\",\n    \"message\": \"User Logged\"\n}"
+						},
+						{
+							"name": "freelanceLogin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"thomas@freelance.com\",\r\n    \"password\": \"APIb3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "211"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d3-grZXfEZda05mnZcinE5ZidhMhq0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 12:17:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2M2M0MGQ4NjJkZDkyMDc5YTdjMTE2NTUiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjczOTU3ODMxfQ.IArA18Hm-IHKMGbsNrQrXakt7T4bauGxtXhx3Zge7UE\",\n    \"message\": \"User Logged\"\n}"
+						}
+					]
+				},
+				{
+					"name": "freelanceRegister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Lorris\",\r\n    \"lastname\": \"Freelance\",\r\n    \"email\": \"Lorris@Freelance.com\",\r\n    \"password\": \"APIb3\",\r\n    \"address\": \"100 rue de Paris\",\r\n    \"city\": \"Paris\",\r\n    \"zipCode\": 75020,\r\n    \"phoneNumber\": \"0123456789\",\r\n    \"dailyPrice\": 399,\r\n    \"yearlyExperience\": 12,\r\n    \"skills\": [\r\n        \"Express\",\r\n        \"React\",\r\n        \"JavaScript\",\r\n        \"SQL\",\r\n        \"NoSQL\"\r\n    ],\r\n    \"jobs\": [\r\n        \"front-end\",\r\n        \"back-end\",\r\n        \"full-stack\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/freelanceRegister",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"freelanceRegister"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Création Freelance Lorris",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Lorris\",\r\n    \"lastname\": \"Freelance\",\r\n    \"email\": \"Lorris@Freelance.com\",\r\n    \"password\": \"APIb3\",\r\n    \"address\": \"100 rue de Paris\",\r\n    \"city\": \"Paris\",\r\n    \"zipCode\": 75020,\r\n    \"phoneNumber\": \"0123456789\",\r\n    \"dailyPrice\": 399,\r\n    \"yearlyExperience\": 12,\r\n    \"skills\": [\r\n        \"Express\",\r\n        \"React\",\r\n        \"JavaScript\",\r\n        \"SQL\",\r\n        \"NoSQL\"\r\n    ],\r\n    \"jobs\": [\r\n        \"front-end\",\r\n        \"back-end\",\r\n        \"full-stack\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/freelanceRegister",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"freelanceRegister"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "673"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a1-cBT+snxUX3XVl9R+eQjIyIz4W+s\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jan 2023 10:26:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"newUser\": {\n        \"firstname\": \"Lorris\",\n        \"lastname\": \"Freelance\",\n        \"email\": \"lorris@freelance.com\",\n        \"password\": \"$2b$10$V6Ya20.X7eQJ1klfEC8Iw.IykWlZ.p/ZGcCLqTc8xOE6SymyQXzYS\",\n        \"isAdmin\": false,\n        \"address\": \"100 rue de Paris\",\n        \"city\": \"Paris\",\n        \"zipCode\": 75020,\n        \"phoneNumber\": \"0123456789\",\n        \"_id\": \"63cd0f5f1368153b7bc03023\",\n        \"__v\": 0\n    },\n    \"newFreelance\": {\n        \"dailyPrice\": 399,\n        \"yearlyExperience\": 12,\n        \"skills\": [\n            \"63c40e44282da1ae89083e5f\",\n            \"63bc7f90d6b718ddb56a76f1\",\n            \"63c40e5a282da1ae89083e65\",\n            \"63c40e3c282da1ae89083e5d\",\n            \"63c40e32282da1ae89083e5b\"\n        ],\n        \"jobs\": [\n            \"63bd773d26052ea438e80d65\",\n            \"63bd772e26052ea438e80d63\",\n            \"63c40f726cc98507741c3c06\"\n        ],\n        \"_id\": \"63cd0f5f1368153b7bc03024\",\n        \"user\": \"63cd0f5f1368153b7bc03023\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "recruiterRegister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Tony\",\r\n    \"lastname\": \"Recruiter\",\r\n    \"email\": \"Tony@recruiter.com\",\r\n    \"password\": \"APIb3\",\r\n    \"address\": \"29 rue de Paris\",\r\n    \"city\": \"Paris\",\r\n    \"zipCode\": 75020,\r\n    \"phoneNumber\": \"0123456789\",\r\n    \"companyName\": \"ynov\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/recruiterRegister",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"recruiterRegister"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Création Recruteur Tony",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Tony\",\r\n    \"lastname\": \"Recruiter\",\r\n    \"email\": \"Tony@recruiter.com\",\r\n    \"password\": \"APIb3\",\r\n    \"address\": \"29 rue de Paris\",\r\n    \"city\": \"Paris\",\r\n    \"zipCode\": 75020,\r\n    \"phoneNumber\": \"0123456789\",\r\n    \"companyName\": \"ynov\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/recruiterRegister",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"recruiterRegister"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-2pKASYLMuzRyx9L4tZr3zBkzs30\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jan 2023 10:11:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstname\": \"Tony\",\n    \"lastname\": \"Recruiter\",\n    \"email\": \"tony@recruiter.com\",\n    \"password\": \"$2b$10$CMtmZRb.bQGAKLRGwHAPc.yW9L0sJ3ntMdk7qV0CFIlBMKauVaNEe\",\n    \"isAdmin\": false,\n    \"address\": \"29 rue de Paris\",\n    \"city\": \"Paris\",\n    \"zipCode\": 75020,\n    \"phoneNumber\": \"0123456789\",\n    \"_id\": \"63cd0bb686518253d71de425\",\n    \"company\": \"63c41b6e67fa73baecd01663\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "companyCreation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MicroSoft\",\r\n    \"status\": \"EURL\",\r\n    \"siret\": \"9471728468993\",\r\n    \"address\": \"New York USA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/companyCreation",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"companyCreation"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Création Microsoft",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"MicroSoft\",\r\n    \"status\": \"EURL\",\r\n    \"siret\": \"9471728468993\",\r\n    \"address\": \"New York USA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/companyCreation",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"companyCreation"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-RXcmj81BMpfQWY+7+zAgZj4PZaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 11:56:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"name\": \"MicroSoft\",\n        \"status\": \"EURL\",\n        \"siret\": \"9471728468993\",\n        \"address\": \"New York USA\",\n        \"_id\": \"63c68cf9e3000038dd59007d\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Mission",
+			"item": [
+				{
+					"name": "createMission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Mission 6 mois Back-End\",\r\n    \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\r\n    \"totalAmount\": 20000,\r\n    \"startDate\": \"2023-03-01\",\r\n    \"endDate\": \"2023-08-31\",\r\n    \"job\": \"Back-End\",\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/mission/createMission",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"mission",
+								"createMission"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createMission",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Mission 6 mois Back-End\",\r\n    \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\r\n    \"totalAmount\": 20000,\r\n    \"startDate\": \"2023-03-01\",\r\n    \"endDate\": \"2023-08-31\",\r\n    \"job\": \"Back-End\",\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/mission/createMission",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"mission",
+										"createMission"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "453"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c5-N+U0dkeckX5UirEBeNpTiW1p1CQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 11:53:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Mission 6 mois Back-End\",\n    \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\n    \"totalAmount\": 20000,\n    \"startDate\": \"2023-03-01T00:00:00.000Z\",\n    \"endDate\": \"2023-08-31T00:00:00.000Z\",\n    \"skills\": [\n        \"63bc7f90d6b718ddb56a76f1\"\n    ],\n    \"_id\": \"63c68c34e3000038dd590073\",\n    \"job\": \"63bd773d26052ea438e80d65\",\n    \"company\": \"63c41b6e67fa73baecd01663\",\n    \"status\": \"En attente\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "updateMission",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"63bdab26545d5bdc07b025d6\",\r\n    \"title\": \"test\",\r\n    \"description\": \"test\",\r\n    \"status\": \"En attente\",\r\n    \"totalAmount\": 10000,\r\n    \"startDate\": \"2023-03-01\",\r\n    \"endDate\": \"2023-08-31\",\r\n    \"job\": \"Back-End\",\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/mission/updateMission",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"mission",
+								"updateMission"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateMission",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"63bdab26545d5bdc07b025d6\",\r\n    \"title\": \"test\",\r\n    \"description\": \"test\",\r\n    \"status\": \"En attente\",\r\n    \"totalAmount\": 10000,\r\n    \"startDate\": \"2023-03-01\",\r\n    \"endDate\": \"2023-08-31\",\r\n    \"job\": \"Back-End\",\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/mission/updateMission",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"mission",
+										"updateMission"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10b-yt3g3u5VvgQlcQQPbVtGABjm89w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jan 2023 23:02:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63bdab26545d5bdc07b025d6\",\n    \"title\": \"test\",\n    \"description\": \"test\",\n    \"status\": \"En attente\",\n    \"totalAmount\": 10000,\n    \"startDate\": \"2023-03-01T00:00:00.000Z\",\n    \"endDate\": \"2023-08-31T00:00:00.000Z\",\n    \"job\": \"63bd773d26052ea438e80d65\",\n    \"skills\": [\n        \"63bc7f90d6b718ddb56a76f1\"\n    ],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteMission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mission\": \"63c68c34e3000038dd590073\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/mission/deleteMission",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"mission",
+								"deleteMission"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteMission",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mission\": \"63c68c34e3000038dd590073\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/mission/deleteMission",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"mission",
+										"deleteMission"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-A4lLoZxHlRoRtzchwZQP++CuEhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 11:53:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Mission supprimée\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getCurrentCompanyMissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/mission/getCurrentCompanyMissions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"mission",
+								"getCurrentCompanyMissions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCurrentCompanyMissions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/mission/getCurrentCompanyMissions",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"mission",
+										"getCurrentCompanyMissions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "635"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27b-Cd5mUiUkZ0enjmWdNg1GNidRkH4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 12:10:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63c4261635b88e6c96f1c6fe\",\n        \"title\": \"Mission 6 mois Back-End\",\n        \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\n        \"totalAmount\": 20000,\n        \"startDate\": \"2023-03-01T00:00:00.000Z\",\n        \"endDate\": \"2023-08-31T00:00:00.000Z\",\n        \"skills\": [\n            {\n                \"_id\": \"63bc7f90d6b718ddb56a76f1\",\n                \"name\": \"JAVASCRIPT\"\n            }\n        ],\n        \"job\": {\n            \"_id\": \"63bd773d26052ea438e80d65\",\n            \"name\": \"back-end\",\n            \"__v\": 0\n        },\n        \"company\": {\n            \"_id\": \"63c41b6e67fa73baecd01663\",\n            \"name\": \"YNOV\",\n            \"status\": \"SAS\",\n            \"siret\": \"8461929302847\",\n            \"address\": \"14 rue Anatole France 92000 Nanterre\",\n            \"__v\": 0\n        },\n        \"status\": \"En attente\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "getFreelances",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/user/getFreelances?minPrice=0&maxPrice=500&minExp=2&maxExp=10&s=C%23,JavaScript",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"getFreelances"
+							],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "0",
+									"description": "Prix minimal"
+								},
+								{
+									"key": "maxPrice",
+									"value": "500",
+									"description": "Prix maximal"
+								},
+								{
+									"key": "minExp",
+									"value": "2",
+									"description": "Expérience minimale"
+								},
+								{
+									"key": "maxExp",
+									"value": "10",
+									"description": "Expérience maximale"
+								},
+								{
+									"key": "s",
+									"value": "C%23,JavaScript",
+									"description": "Skills recherché, séparés par un espace"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getFreelances",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/user/getFreelances?minPrice=0&maxPrice=1000&minExp=2&maxExp=10&s=Autonome,Bilingue",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"getFreelances"
+									],
+									"query": [
+										{
+											"key": "minPrice",
+											"value": "0"
+										},
+										{
+											"key": "maxPrice",
+											"value": "1000"
+										},
+										{
+											"key": "minExp",
+											"value": "2"
+										},
+										{
+											"key": "maxExp",
+											"value": "10"
+										},
+										{
+											"key": "s",
+											"value": "Autonome,Bilingue",
+											"description": "skills"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "514"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"202-oD58sDf5azd+RIDKZexdkI0sWms\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Jan 2023 22:06:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63bc885c4f360e998896fa66\",\n        \"dailyPrice\": 300,\n        \"yearlyExperience\": 5,\n        \"skills\": [\n            {\n                \"_id\": \"63bc7f82d6b718ddb56a76f0\",\n                \"name\": \"Autonome\"\n            },\n            {\n                \"_id\": \"63bc7f90d6b718ddb56a76f1\",\n                \"name\": \"Bilingue\"\n            }\n        ],\n        \"user\": {\n            \"_id\": \"63bc885c4f360e998896fa65\",\n            \"firstname\": \"Joaquim\",\n            \"lastname\": \"Freelancer\",\n            \"email\": \"joaquim.freelancer@gmail.com\",\n            \"password\": \"$2b$10$vnafhM/sitYE68SbwgR21.p5cTibUaByzW8j8ZOwaTGH/hsLhNa26\",\n            \"isAdmin\": false,\n            \"address\": \"21 rue Vauvenargues\",\n            \"city\": \"Paris\",\n            \"zipCode\": 75018,\n            \"phoneNumber\": \"0600000000\",\n            \"__v\": 0\n        },\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/user/search?s=C%23 JavaScript Paris front-end Eleonore",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "s",
+									"value": "C%23 JavaScript Paris front-end Eleonore",
+									"description": "Elements du profil recherchés, séparés par un espace"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/user/search?s=Freelancer JavaScript",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"search"
+									],
+									"query": [
+										{
+											"key": "s",
+											"value": "Freelancer JavaScript"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "520"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"208-YVUsrP4uFflGgPGU1GW0ZArQC3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Jan 2023 14:33:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"jobs\": [],\n        \"_id\": \"63bc885c4f360e998896fa66\",\n        \"dailyPrice\": 300,\n        \"yearlyExperience\": 5,\n        \"skills\": [\n            {\n                \"_id\": \"63bc7f82d6b718ddb56a76f0\",\n                \"name\": \"C#\"\n            },\n            {\n                \"_id\": \"63bc7f90d6b718ddb56a76f1\",\n                \"name\": \"JavaScript\"\n            }\n        ],\n        \"user\": {\n            \"_id\": \"63bc885c4f360e998896fa65\",\n            \"firstname\": \"Joaquim\",\n            \"lastname\": \"Freelancer\",\n            \"email\": \"joaquim.freelancer@gmail.com\",\n            \"password\": \"$2b$10$vnafhM/sitYE68SbwgR21.p5cTibUaByzW8j8ZOwaTGH/hsLhNa26\",\n            \"isAdmin\": false,\n            \"address\": \"21 rue Vauvenargues\",\n            \"city\": \"Paris\",\n            \"zipCode\": 75018,\n            \"phoneNumber\": \"0600000000\",\n            \"__v\": 0\n        },\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "updateProfile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"test3\",\r\n    \"lastname\": \"test3\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"address\": \"test3\",\r\n    \"city\": \"test3\",\r\n    \"zipCode\": 75000,\r\n    \"phoneNumber\": \"0666666666\",\r\n    \"dailyPrice\": 400,\r\n    \"yearlyExperience\": 3,\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ],\r\n    \"jobs\": [\r\n        \"Back-End Developper\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/user/updateProfile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"updateProfile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateProfileRaw",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"test3\",\r\n    \"lastname\": \"test3\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"address\": \"test3\",\r\n    \"city\": \"test3\",\r\n    \"zipCode\": 75000,\r\n    \"phoneNumber\": \"0666666666\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/user/updateProfile",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"updateProfile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "345"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"159-G/UkQzEtvDf5i9mRsiIHA6qCAIw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jan 2023 22:03:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"skills\": [],\n    \"jobs\": [],\n    \"_id\": \"63bf2c2c9a9745900d652c4e\",\n    \"user\": {\n        \"_id\": \"63bf2c2c9a9745900d652c4d\",\n        \"firstname\": \"test3\",\n        \"lastname\": \"test3\",\n        \"email\": \"test3@gmail.com\",\n        \"password\": \"$2b$10$WV7WO52tGTm5Z.5/iNyPvOOYhafri3aADWzijcpwhT6SFwUq6wlHa\",\n        \"isAdmin\": false,\n        \"address\": \"test3\",\n        \"city\": \"test3\",\n        \"zipCode\": 75000,\n        \"phoneNumber\": \"0666666666\",\n        \"__v\": 0\n    },\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "updateProfileFreelanceExt",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"test3\",\r\n    \"lastname\": \"test3\",\r\n    \"email\": \"test3@gmail.com\",\r\n    \"address\": \"test3\",\r\n    \"city\": \"test3\",\r\n    \"zipCode\": 75000,\r\n    \"phoneNumber\": \"0666666666\",\r\n    \"dailyPrice\": 400,\r\n    \"yearlyExperience\": 3,\r\n    \"skills\": [\r\n        \"JavaScript\"\r\n    ],\r\n    \"jobs\": [\r\n        \"Back-End Developper\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/user/updateProfile",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"updateProfile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "435"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b3-CWZLE1cyTxRfsh6QHOz3SIBIVZw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jan 2023 22:16:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63bf2c2c9a9745900d652c4e\",\n    \"user\": {\n        \"_id\": \"63bf2c2c9a9745900d652c4d\",\n        \"firstname\": \"test3\",\n        \"lastname\": \"test3\",\n        \"email\": \"test3@gmail.com\",\n        \"password\": \"$2b$10$WV7WO52tGTm5Z.5/iNyPvOOYhafri3aADWzijcpwhT6SFwUq6wlHa\",\n        \"isAdmin\": false,\n        \"address\": \"test3\",\n        \"city\": \"test3\",\n        \"zipCode\": 75000,\n        \"phoneNumber\": \"0666666666\",\n        \"__v\": 0\n    },\n    \"__v\": 0,\n    \"jobs\": [\n        \"63bd773d26052ea438e80d65\"\n    ],\n    \"skills\": [\n        \"63bc7f90d6b718ddb56a76f1\"\n    ],\n    \"dailyPrice\": 400,\n    \"yearlyExperience\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"APIb3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/user/changePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"changePassword"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "changePassword",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\": \"test4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/user/changePassword",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"changePassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "273"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"111-q7m2mI1kWDZr+Oxesv9tmhr4kxs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jan 2023 22:25:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"63bf2c2c9a9745900d652c4d\",\n    \"firstname\": \"test3\",\n    \"lastname\": \"test3\",\n    \"email\": \"test3@gmail.com\",\n    \"password\": \"$2b$10$ZD6PTRIzx067h46T.eHbCe7JOPEVIIf0eUfgAiitBGl6rp86tTAy.\",\n    \"isAdmin\": false,\n    \"address\": \"test3\",\n    \"city\": \"test3\",\n    \"zipCode\": 75000,\n    \"phoneNumber\": \"0666666666\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sven.dockx@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/user/resetPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"resetPassword"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "resetPassword",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/user/resetPassword",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"resetPassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d-DCT9XjlzZCrEjBGcAS7CnvJsRRw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jan 2023 22:34:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"newPassword\": \"4l3u9t1wqll\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Proposition",
+			"item": [
+				{
+					"name": "createProposition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"63c40d862dd92079a7c11655\",\r\n    \"mission\": \"63c4261635b88e6c96f1c6fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/proposition/createProposition",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"proposition",
+								"createProposition"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createProposition",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"63c40d862dd92079a7c11655\",\r\n    \"mission\": \"63c4261635b88e6c96f1c6fe\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/proposition/createProposition",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"proposition",
+										"createProposition"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "290"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"122-PphnPe5IA7HedVhsAJrajFARwMQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 12:16:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"company\": {\n        \"_id\": \"63c41b6e67fa73baecd01663\",\n        \"name\": \"YNOV\",\n        \"status\": \"SAS\",\n        \"siret\": \"8461929302847\",\n        \"address\": \"14 rue Anatole France 92000 Nanterre\",\n        \"__v\": 0\n    },\n    \"user\": \"63c40d862dd92079a7c11655\",\n    \"mission\": \"63c4261635b88e6c96f1c6fe\",\n    \"status\": \"En attente\",\n    \"_id\": \"63c691aa630ad1793a4d7e2f\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "handleProposition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mission\": \"63c4261635b88e6c96f1c6fe\",\r\n    \"accepted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/proposition/handleProposition",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"proposition",
+								"handleProposition"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "handlePropositionRefused",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mission\": \"63bdab26545d5bdc07b025d6\",\r\n    \"accepted\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/proposition/handleProposition",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"proposition",
+										"handleProposition"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-fgR5yLHQ1Hpp6zDESHaY9wJreYE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Jan 2023 19:52:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"acknowledged\": true,\n    \"deletedCount\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "getCurrentUserPropositions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/proposition/getCurrentUserPropositions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"proposition",
+								"getCurrentUserPropositions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCurrentUserPropositions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/proposition/getCurrentUserPropositions",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"proposition",
+										"getCurrentUserPropositions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "781"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30d-z1csfQlBfEpflkbwKOty2dKxUO0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 12:19:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63c691aa630ad1793a4d7e2f\",\n        \"company\": {\n            \"_id\": \"63c41b6e67fa73baecd01663\",\n            \"name\": \"YNOV\",\n            \"status\": \"SAS\",\n            \"siret\": \"8461929302847\",\n            \"address\": \"14 rue Anatole France 92000 Nanterre\",\n            \"__v\": 0\n        },\n        \"user\": \"63c40d862dd92079a7c11655\",\n        \"mission\": {\n            \"_id\": \"63c4261635b88e6c96f1c6fe\",\n            \"title\": \"Mission 6 mois Back-End\",\n            \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\n            \"totalAmount\": 20000,\n            \"startDate\": \"2023-03-01T00:00:00.000Z\",\n            \"endDate\": \"2023-08-31T00:00:00.000Z\",\n            \"skills\": [\n                {\n                    \"_id\": \"63bc7f90d6b718ddb56a76f1\",\n                    \"name\": \"JAVASCRIPT\"\n                }\n            ],\n            \"job\": {\n                \"_id\": \"63bd773d26052ea438e80d65\",\n                \"name\": \"back-end\",\n                \"__v\": 0\n            },\n            \"company\": \"63c41b6e67fa73baecd01663\",\n            \"status\": \"En attente\",\n            \"__v\": 0\n        },\n        \"status\": \"En attente\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getCurrentCompanyPropositions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/proposition/getCurrentCompanyPropositions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"proposition",
+								"getCurrentCompanyPropositions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCurrentCompanyPropositions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/proposition/getCurrentCompanyPropositions",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"proposition",
+										"getCurrentCompanyPropositions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1047"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"417-8rnBN2466wYHUy2aNhAkZluE8TI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Jan 2023 13:38:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"63c6943584137c36940004db\",\n        \"company\": {\n            \"_id\": \"63c41b6e67fa73baecd01663\",\n            \"name\": \"YNOV\",\n            \"status\": \"SAS\",\n            \"siret\": \"8461929302847\",\n            \"address\": \"14 rue Anatole France 92000 Nanterre\",\n            \"__v\": 0\n        },\n        \"user\": {\n            \"_id\": \"63c40d862dd92079a7c11655\",\n            \"firstname\": \"Thomas\",\n            \"lastname\": \"Freelance\",\n            \"email\": \"thomas@freelance.com\",\n            \"password\": \"$2b$10$PcPR/gDyaa5YBfL9MEnDV.OLiQN5pOEcG.uRfpa2P0WYMhnhxldvC\",\n            \"isAdmin\": false,\n            \"address\": \"1 rue de Paris\",\n            \"city\": \"Paris\",\n            \"zipCode\": 75001,\n            \"phoneNumber\": \"0123456789\",\n            \"__v\": 0\n        },\n        \"mission\": {\n            \"_id\": \"63c4261635b88e6c96f1c6fe\",\n            \"title\": \"Mission 6 mois Back-End\",\n            \"description\": \"Mission d'une durée de 6 mois pour un développeur back-end. Compétences en JavaScript obligatoires, début de le plus tôt possible\",\n            \"totalAmount\": 20000,\n            \"startDate\": \"2023-03-01T00:00:00.000Z\",\n            \"endDate\": \"2023-08-31T00:00:00.000Z\",\n            \"skills\": [\n                {\n                    \"_id\": \"63bc7f90d6b718ddb56a76f1\",\n                    \"name\": \"JAVASCRIPT\"\n                }\n            ],\n            \"job\": {\n                \"_id\": \"63bd773d26052ea438e80d65\",\n                \"name\": \"back-end\",\n                \"__v\": 0\n            },\n            \"company\": \"63c41b6e67fa73baecd01663\",\n            \"status\": \"En attente\",\n            \"__v\": 0\n        },\n        \"status\": \"En attente\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2M2M0MWU0Mjk2NWE2Mzg2MjMwYjJmYzciLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjczOTU2MjA2fQ.a7yOVpLpmrmEe9on_a6rDHOj3Luc6Agort0K0qDnlCo"
+		}
+	]
+}
