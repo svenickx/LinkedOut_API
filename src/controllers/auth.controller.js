@@ -6,7 +6,6 @@ const Job = require("../models/job_model");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var jwt = require("jsonwebtoken");
-const SendRegisterMail = require("../config/mail/templates/register");
 
 // Inscription d'un utilisateur en Freelance
 exports.freelanceRegister = async (req, res) => {
@@ -30,8 +29,15 @@ exports.freelanceRegister = async (req, res) => {
       newFreelance
         .save()
         .then(() => {
-          SendRegisterMail(newUser.email, newUser.firstname, true);
-          res.status(200).send({ newUser, newFreelance });
+          // SendRegisterMail(newUser.email, newUser.firstname, true);
+          let token = jwt.sign(
+            { userID: data._id, isAdmin: data.isAdmin },
+            process.env.PRIVATEKEY
+          );
+          res.send({
+            token: token,
+            message: "User Logged",
+          });
         })
         .catch((err) => res.status(400).send(err));
     })
@@ -56,20 +62,10 @@ exports.recruiterRegister = async (req, res) => {
   newUser
     .save()
     .then((data) => {
-      SendRegisterMail(newUser.email, newUser.firstname, false);
+      // SendRegisterMail(newUser.email, newUser.firstname, false);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
-};
-
-// Création d'une entreprise
-exports.companyCreation = async (req, res) => {
-  const newCompany = new Company(req.body);
-
-  newCompany
-    .save()
-    .then((data) => res.status(200).send({ data }))
-    .catch((err) => res.status(400).send({ err }));
 };
 
 // Connexion
@@ -83,15 +79,19 @@ exports.login = async (req, res) => {
 
   let passwordValid = bcrypt.compareSync(req.body.password, user.password);
   if (!passwordValid) {
-    return res.status(401).send();
+    return res.status(400).send({ message: "Mot de passe incorrect" });
   }
 
   let token = jwt.sign(
     { userID: user._id, isAdmin: user.isAdmin },
     process.env.PRIVATEKEY
   );
+  const freelance = await Freelance.findOne({ user: user._id });
+
   res.send({
     token: token,
     message: "User Logged",
+    user: user,
+    freelance: freelance,
   });
 };

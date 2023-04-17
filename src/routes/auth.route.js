@@ -20,6 +20,4 @@ router.post(
   verifyRecruiterRegister,
   authController.recruiterRegister
 );
-router.post("/companyCreation", authController.companyCreation);
-
 module.exports = router;

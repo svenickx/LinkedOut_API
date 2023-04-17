@@ -3,25 +3,29 @@ const User = require("../models/user_model");
 const Skill = require("../models/skill_model");
 const Job = require("../models/job_model");
 const bcrypt = require("bcrypt");
-const ResetPasswordMail = require("../config/mail/templates/resetPassword");
 const saltRounds = 10;
 
 // Retourne les Freelances selon les paramètres par défaut ou passé dans la requêtes
 exports.getFreelances = async (req, res) => {
   const { minPrice, maxPrice, s, minExp, maxExp } = req.query;
 
-  const skillsSearch = s.split(",");
-  const dbSkills = await Skill.find({ name: { $in: skillsSearch } });
-  const skillIDs = dbSkills.map((s) => s.id);
+  const filters = [
+    { dailyPrice: { $gte: minPrice ?? 0 } },
+    { dailyPrice: { $lte: maxPrice ?? 9999 } },
+    { yearlyExperience: { $gt: minExp ?? 0 } },
+    { yearlyExperience: { $lt: maxExp ?? 50 } },
+  ];
+  let skillIDs = [];
+  if (s) {
+    const skillsSearch = s.split(",");
+    const dbSkills = await Skill.find({ name: { $in: skillsSearch } });
+    skillIDs = dbSkills.map((s) => s.id);
+
+    filters.push({ skills: { $all: skillIDs } });
+  }
 
   const allFreelances = await Freelance.find({
-    $and: [
-      { dailyPrice: { $gte: minPrice ?? 0 } },
-      { dailyPrice: { $lte: maxPrice ?? 9999 } },
-      { skills: { $in: skillIDs } },
-      { yearlyExperience: { $gt: minExp ?? 0 } },
-      { yearlyExperience: { $lt: maxExp ?? 50 } },
-    ],
+    $and: filters,
   })
     .populate("user")
     .populate("skills")
@@ -175,6 +179,48 @@ exports.resetPassword = async (req, res) => {
       message:
         "Le mot de passe a été reinitialisé, veuillez consulter votre boite mail",
     });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+// Récupère l'utilisateur connecté
+exports.me = async (req, res) => {
+  try {
+    const user = await User.findById(req.userToken.userID);
+    if (!user) {
+      res.status(404).send({ message: "Aucun utilisateur trouvé" });
+      return;
+    }
+    delete user.password;
+    const freelance = await Freelance.findOne({ user: user._id });
+    if (!freelance) {
+      res.status(200).send(user);
+      return;
+    }
+    res.status(200).send({ user, freelance });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+// Récupère l'utilisateur
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.query.id).populate("company");
+    if (!user) {
+      res.status(404).send({ message: "Aucun utilisateur trouvé" });
+      return;
+    }
+    delete user.password;
+    const freelance = await Freelance.findOne({ user: user._id })
+      .populate("jobs")
+      .populate("skills");
+    if (!freelance) {
+      res.status(200).send({ user });
+      return;
+    }
+    res.status(200).send({ user, freelance });
   } catch (err) {
     res.status(400).send(err);
   }

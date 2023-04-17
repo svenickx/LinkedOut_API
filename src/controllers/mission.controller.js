@@ -1,4 +1,5 @@
 const Mission = require("../models/mission_model");
+const Proposition = require("../models/proposition_model");
 const Job = require("../models/job_model");
 const Skill = require("../models/skill_model");
 
@@ -15,7 +16,7 @@ exports.createMission = async (req, res) => {
     newMission.skills = dbSkills.map((s) => s.id);
   }
   newMission.company = req.companyID;
-  newMission.status = "En attente";
+  newMission.status = "Pending";
 
   newMission
     .save()
@@ -64,6 +65,74 @@ exports.getCurrentCompanyMissions = async (req, res) => {
         return res
           .status(404)
           .send({ message: "Aucune mission trouvée pour votre entreprise" });
+      }
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).send(err));
+};
+
+exports.getPendingCompanyMissions = async (req, res) => {
+  try {
+    let missions = await Mission.find({
+      company: req.companyID,
+      status: "Pending",
+    })
+      .populate("company")
+      .populate("job")
+      .populate("skills");
+
+    if (missions.length < 0) {
+      return res.status(200).send(missions);
+    }
+
+    let propositions = await Proposition.find({
+      mission: { $in: missions.map((m) => m._id) },
+      company: req.companyID,
+    });
+
+    if (propositions.length < 1) {
+      return res.status(200).send(missions);
+    }
+
+    // Retire les missions qui ont 3 propositions
+    const missionMaxProposed = [];
+    const propositionsCount = propositions.reduce(
+      (prev, curr) => ((prev[curr.mission] = ++prev[curr.mission] || 1), prev)
+    );
+    for (const key in propositionsCount) {
+      if (propositionsCount[key] >= 3) {
+        missionMaxProposed.push(key);
+      }
+    }
+
+    missions = missions.filter(
+      (m) => !missionMaxProposed.some((id) => m._id.equals(id))
+    );
+
+    if (!req.params.userID) {
+      return res.status(200).send(missions);
+    }
+
+    propositions = propositions.filter((p) => p.user == req.params.userID);
+    propositions = propositions.map((p) => p.mission._id);
+    // Retire les missions qui ont déjà été proposé à l'utilisateur
+    missions = missions.filter(
+      (m) => !propositions.some((p) => p.equals(m._id))
+    );
+    return res.status(200).send(missions);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.getFreelanceMission = async (req, res) => {
+  Mission.find({ user: req.userToken.userID })
+    .populate("company")
+    .populate("job")
+    .populate("skills")
+    .then((data) => {
+      if (!data) {
+        return res.status(404).send({ message: "Aucune mission trouvée" });
       }
       res.status(200).send(data);
     })

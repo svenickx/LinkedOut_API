@@ -1,8 +1,8 @@
 const freelanceRegisterSchema = require("./validators/freelanceRegisterValidator");
 
 const verifyFreelanceRegister = (req, res, next) => {
+  delete req.body.companyName;
   const { error } = freelanceRegisterSchema.validate(req.body);
-
   if (error) {
     return res.status(400).send({
       message:

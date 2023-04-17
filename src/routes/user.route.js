@@ -8,5 +8,7 @@ router.get("/search", userController.search);
 router.put("/updateProfile", hasToken, userController.updateProfile);
 router.put("/changePassword", hasToken, userController.changePassword);
 router.post("/resetPassword", hasToken, userController.resetPassword);
+router.post("/me", hasToken, userController.me);
+router.get("/getUser", userController.getUser);
 
 module.exports = router;

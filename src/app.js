@@ -3,7 +3,9 @@ const app = express();
 app.use(express.json());
 require("dotenv").config();
 const apiRouter = require("./routes");
+var cors = require("cors");
 
+app.use(cors());
 app.use("/api/v1", apiRouter);
 
 const mongoose = require("mongoose");
@@ -14,6 +16,6 @@ mongoose
   .then(console.log("connected to db"))
   .catch((err) => console.log(err));
 
-app.listen(3000, () => {
-  console.log(`http://localhost:3000/`);
+app.listen(3001, () => {
+  console.log(`http://localhost:3001/`);
 });

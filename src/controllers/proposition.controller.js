@@ -1,8 +1,6 @@
 const Proposition = require("../models/proposition_model");
 const User = require("../models/user_model");
 const Mission = require("../models/mission_model");
-const CreatePropositionMail = require("../config/mail/templates/createProposition");
-const HandlePropositionMail = require("../config/mail/templates/handleProposition");
 
 // Créé une nouvelle proposition à destination d'un utilisateur Freelance
 exports.createProposition = async (req, res) => {
@@ -33,19 +31,19 @@ exports.createProposition = async (req, res) => {
 
   let currentPropositions = await Proposition.find({
     mission: currentMission,
-    $or: [{ status: "En attente" }, { status: "Refusé" }],
+    $or: [{ status: "Pending" }, { status: "Refused" }],
   });
 
   const isAlreadyProposed = currentPropositions.some((p) => p.user._id == user);
   if (isAlreadyProposed) {
-    res.status(401).send({
+    return res.status(401).send({
       message:
         "Le Freelance a déjà une proposition lié à cette mission (En attente ou refusé)",
     });
   }
 
   currentPropositions = currentPropositions.filter(
-    (p) => p.status == "En attente"
+    (p) => p.status == "Pending"
   );
 
   if (currentPropositions.length >= 3) {
@@ -59,14 +57,12 @@ exports.createProposition = async (req, res) => {
     company: currentMission.company,
     user: dbUser._id,
     mission: currentMission._id,
-    status: "En attente",
+    status: "Pending",
   });
 
   newProposition
     .save()
-
     .then((data) => {
-      CreatePropositionMail(dbUser.email, currentMission);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
@@ -85,9 +81,9 @@ exports.handleProposition = async (req, res) => {
       {
         user: req.userToken.userID,
         mission,
-        status: "En attente",
+        status: "Pending",
       },
-      { status: "Refusé" },
+      { status: "Refused" },
       { new: true }
     )
       .populate("company")
@@ -100,12 +96,12 @@ exports.handleProposition = async (req, res) => {
           });
         }
 
-        HandlePropositionMail(
-          companyRecruiter.email,
-          currentUser.firstname,
-          currentMission.title,
-          false
-        );
+        // HandlePropositionMail(
+        //   companyRecruiter.email,
+        //   currentUser.firstname,
+        //   currentMission.title,
+        //   false
+        // );
         res.status(200).send(data);
       })
       .catch((err) => res.status(400).send(err));
@@ -130,7 +126,7 @@ exports.handleProposition = async (req, res) => {
 
   if (
     currentPropositions.some(
-      (p) => p.status != "En attente" && p.user._id == req.userToken.userID
+      (p) => p.status != "Pending" && p.user._id == req.userToken.userID
     )
   ) {
     return res.status(400).send({
@@ -146,22 +142,22 @@ exports.handleProposition = async (req, res) => {
   }
 
   const proposition = currentPropositions.map(async (p) => {
-    p.status = p.user == req.userToken.userID ? "Accepted" : "Rejected";
+    p.status = p.user == req.userToken.userID ? "Accepted" : "Refused";
     await Proposition.findByIdAndUpdate(p._id, p);
     if (p.user == req.userToken.userID) {
       return p;
     }
   });
 
-  currentMission.status = "En cours";
+  currentMission.status = "Confirmed";
   await Mission.findByIdAndUpdate(currentMission._id, currentMission);
 
-  HandlePropositionMail(
-    companyRecruiter.email,
-    currentUser.firstname,
-    currentMission.title,
-    true
-  );
+  // HandlePropositionMail(
+  //   companyRecruiter.email,
+  //   currentUser.firstname,
+  //   currentMission.title,
+  //   true
+  // );
 
   return res.status(200).send(proposition);
 };

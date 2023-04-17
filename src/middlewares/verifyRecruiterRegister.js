@@ -1,8 +1,12 @@
 const recruiterRegisterSchema = require("./validators/recruiterRegisterValidator");
 
 const verifyRecruiterRegister = (req, res, next) => {
-  const { error } = recruiterRegisterSchema.validate(req.body);
+  delete req.body.skills;
+  delete req.body.jobs;
+  delete req.body.yearlyExperience;
+  delete req.body.price;
 
+  const { error } = recruiterRegisterSchema.validate(req.body);
   if (error) {
     return res.status(400).send({
       message:

@@ -23,10 +23,21 @@ router.delete(
   missionController.deleteMission
 );
 router.get(
-  "/getCurrentCompanyMissions",
+  "/getAllCompanyMissions",
   hasToken,
   isCompany,
   missionController.getCurrentCompanyMissions
+);
+router.get(
+  "/getPendingCompanyMissions/:userID?",
+  hasToken,
+  isCompany,
+  missionController.getPendingCompanyMissions
+);
+router.get(
+  "/getFreelanceMission",
+  hasToken,
+  missionController.getFreelanceMission
 );
 
 module.exports = router;
